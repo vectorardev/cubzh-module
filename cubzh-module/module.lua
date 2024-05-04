@@ -4,6 +4,23 @@ cubzhMod.test = function(name)
     print("HELLO!")
 end 
 
+cubzhMod.lee = function() 
+    File:OpenAndReadAll(function(success, result)
+        -- success is a boolean
+        if not success then
+            print("Could not read file")
+            return
+        end
+        -- the user has cancelled the file selection
+        if result == nil then
+            print("No file selected")
+            return
+        end
+        local str = result:ToString()
+        print("Content: ", str)
+    end)
+end
+
 Client.OnStart = function() 
     local uikit = require("uikit")
     local textInput = uikit.createTextInput("", "Type the image here", "default")
@@ -27,20 +44,6 @@ Client.OnStart = function()
     if textInput._text == "r2d2" then 
         fileName = "r2d2"
     end
-    File:OpenAndReadAll(function(success, result)
-        -- success is a boolean
-        if not success then
-            print("Could not read file")
-            return
-        end
-        -- the user has cancelled the file selection
-        if result == nil then
-            print("No file selected")
-            return
-        end
-        local str = result:ToString()
-        print("Content: ", str)
-    end)
     -- btn.OnRelease = function() 
     --     local e = Event()
     --     e.action = "image_requested"
