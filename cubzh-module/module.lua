@@ -52,6 +52,12 @@ Client.OnStart = function()
                 print("The URL IS GOOD")
                 -- show the content of the image. 
                 print(res.Body)
+                -- conver the table to a quad ? 
+                local quad = Quad()
+                quad.Width = 30
+                quad.Height = 30
+                quad.Anchor = { 0.5, 0 }
+                quad.Image = res.Body 
             else
                 print("CAN'T FIND THE URL")
             end
