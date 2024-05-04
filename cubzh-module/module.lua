@@ -53,10 +53,9 @@ cubzhMod.sendRequestForImage = function()
                    print(res.Body)
                    -- conver the table to a quad ? 
                    local quad = Quad()
-                   quad.Width = 100
-                   quad.Height = 100
-                   quad.Anchor = { 0.5, 0 }
-                   quad.Image = res.Body 
+                   quad.Width = 300
+                   quad.Height = 300
+                --    quad.Image = res.Body 
                    quad:SetParent(Player) 
                    quad.Position = {0, 0, 0} 
                else
