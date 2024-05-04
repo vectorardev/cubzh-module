@@ -5,6 +5,7 @@ cubzhMod.test = function(name)
 end 
 
 cubzhMod.lee = function() 
+    print("Hello")
     File:OpenAndReadAll(function(success, result)
         -- success is a boolean
         if not success then
