@@ -4,7 +4,7 @@ cubzhMod.test = function(name)
     print("HELLO!")
 end 
 
-cubzhMod.lee = function(_) 
+cubzhMod.lee = function(pokemon) 
     print("Hello")
     -- File:OpenAndReadAll(function(success, result)
     --     -- success is a boolean
