@@ -15,7 +15,11 @@ Client.OnStart = function()
     local inputText = uikit:createTextInput("", "Type here", "default")
     local btn = uikit:createButton("Send")
     btn.Position = Number2(200, 0) 
-
+    local boton = uikit:createButton("Send")
+    boton.Position = Number2(500, 500)
+    boton.OnPress = function () 
+        print("Hola que tal?=???? ")
+    end
     ---
     local urlImages = "https://raw.githubusercontent.com/vectorardev/cubzh-module/master/cubzh-module/inventory-images/"
     local fileType = ".png" 
