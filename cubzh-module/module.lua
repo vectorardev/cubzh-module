@@ -21,6 +21,7 @@ Client.OnStart = function()
     local fileType = ".png" 
     local fileName = ""
     btn.OnRelease = function() 
+        print("LA CONCHA DE TU MADRE") 
         if inputText._text == "babyJoda" then 
             fileName = "babyJoda"
         end
