@@ -25,7 +25,7 @@ Client.OnStart = function()
     local fileName = ""
     btn.onRelease = function() 
         print("Helloooooooo") 
-        print("The input text inside is: ", inputText._text)
+        print("The input text inside is: ", inputText.Text)
         if inputText._text == "babyJoda" then 
             fileName = "babyJoda"
         end
