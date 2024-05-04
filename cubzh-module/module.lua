@@ -35,7 +35,7 @@ Client.OnStart = function()
     if textInput._text == "r2d2" then 
         fileName = "r2d2"
     end
-    local finalUrl = urlImages + fileName + fileType
+    local finalUrl = urlImages .. fileName .. fileType
     btn.OnRelease = function() 
         HTTP:Get(finalUrl, function(res)
             if res.StatusCode == 200 then
