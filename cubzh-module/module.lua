@@ -11,21 +11,20 @@ end
 Client.OnStart = function() 
     -- Read the files of the images in the folder
     images = {}
-    local uikit = require("uikit")
+    --- Setting UI system
+    local ui = require("uikit")
+    ui:init()
+    --- 
     local inputText = uikit:createTextInput("", "Type here", "default")
     local btn = uikit:createButton("Send")
+    btn:setParent(ui.rootFrame)
     btn.Position = Number2(200, 0) 
-    local boton = uikit:createButton("Send")
-    boton.Position = Number2(500, 500)
-    boton.OnPress = function () 
-        print("Hola que tal?=???? ")
-    end
     ---
     local urlImages = "https://raw.githubusercontent.com/vectorardev/cubzh-module/master/cubzh-module/inventory-images/"
     local fileType = ".png" 
     local fileName = ""
-    btn.OnRelease = function(_) 
-        print("LA CONCHA DE TU MADRE") 
+    btn.OnPress = function(_) 
+        print("Helloooooooo") 
         if inputText._text == "babyJoda" then 
             fileName = "babyJoda"
         end
