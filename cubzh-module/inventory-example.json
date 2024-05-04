@@ -1,0 +1,26 @@
+{
+    "babyJoda" : {
+        "image": "./inventory-images/babyJoda.png", 
+        "value": 10000
+    }, 
+    "chiwaka" : {
+        "image": "./inventory-images/chiwaka.png", 
+        "value": 2000
+    },
+    "luke" : {
+        "image": "./inventory-images/luke.png", 
+        "value": 8000
+    },
+    "maestro" : {
+        "image": "./inventory-images/maestro.png", 
+        "value": 8500
+    },
+    "noidea" : {
+        "image": "./inventory-images/noidea.png", 
+        "value": 1
+    },
+    "r2d2" : {
+        "image": "./inventory-images/r2d2.png", 
+        "value": 1
+    }
+}
