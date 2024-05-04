@@ -9,23 +9,15 @@ cubzhMod.create = function(_)
 end 
 
 Client.OnStart = function() 
-    File:OpenAndReadAll(function(success, result)
-        -- success is a boolean
-        if not success then
-          print("Could not read file")
-          return
-        end
-      
-        -- the user has cancelled the file selection
-        if result == nil then
-          print("No file selected")
-          return
-        end
-      
-        -- result is a Data instance
-        local str = result:ToString()
-        print("Content: ", str) 
-      end)
+    -- Read the files of the images in the folder
+    images = {}
+    local urlImages = "https://github.com/vectorardev/cubzh-module/tree/7ad4f4d0370d8164735800ff6051b50c9025ce58/cubzh-module/inventory-images"
+    HTTP:Get(function(res)
+        if res.StatusCode == 200 then
+            print("The URL IS GOOD")
+        else
+            print("CAN'T FIND THE URL")
+    end)
 end
 
 return cubzhMod
