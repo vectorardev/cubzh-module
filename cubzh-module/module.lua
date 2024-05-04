@@ -16,15 +16,14 @@ Client.OnStart = function()
     ui = require("uikit")
     --- 
     local inputText = ui:createTextInput("", "Type here", "default")
-    local btn = Button("Send")
+    local btn = ui:createButton("Send")
     -- btn:setParent(ui.rootFrame)
     btn.Position = Number2(200, 0) 
     ---
     local urlImages = "https://raw.githubusercontent.com/vectorardev/cubzh-module/master/cubzh-module/inventory-images/"
     local fileType = ".png" 
     local fileName = ""
-
-    btn.OnPress = function(_) 
+    btn.onRelease = function() 
         print("Helloooooooo") 
         if inputText._text == "babyJoda" then 
             fileName = "babyJoda"
@@ -55,7 +54,6 @@ Client.OnStart = function()
             end
         end)
     end
-
 end
 
 return cubzhMod
