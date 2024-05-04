@@ -14,7 +14,7 @@ Client.OnStart = function()
     local uikit = require("uikit")
     local inputText = uikit:createTextInput("", "Type here", "default")
     local btn = uikit:createButton("Send")
-    btn.Position = btn.Position + Number2(200, 0) 
+    btn.Position = Number2(200, 0) 
 
     ---
     local urlImages = "https://raw.githubusercontent.com/vectorardev/cubzh-module/master/cubzh-module/inventory-images/"
