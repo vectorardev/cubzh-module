@@ -13,7 +13,6 @@ Client.OnStart = function()
     images = {}
     --- Setting UI system
     ui = require("uikit")
-    ui:init()
     --- 
     local inputText = ui:createTextInput("", "Type here", "default")
     local btn = ui:createButton("Send")
