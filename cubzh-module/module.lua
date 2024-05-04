@@ -12,11 +12,11 @@ Client.OnStart = function()
     -- Read the files of the images in the folder
     images = {}
     --- Setting UI system
-    local ui = require("uikit")
+    ui = require("uikit")
     ui:init()
     --- 
-    local inputText = uikit:createTextInput("", "Type here", "default")
-    local btn = uikit:createButton("Send")
+    local inputText = ui:createTextInput("", "Type here", "default")
+    local btn = ui:createButton("Send")
     btn:setParent(ui.rootFrame)
     btn.Position = Number2(200, 0) 
     ---
