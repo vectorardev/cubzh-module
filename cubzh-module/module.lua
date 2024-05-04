@@ -8,12 +8,6 @@ cubzhMod.create = function(_)
     print("HOlaaaa")
 end 
 
-local quad = Quad()
-
-cubzhMod.updateQuadLocation = function(Position) 
-    quad.Position = Position
-end
-
 cubzhMod.sendRequestForImage = function() 
        -- Read the files of the images in the folder
        images = {}
@@ -58,9 +52,11 @@ cubzhMod.sendRequestForImage = function()
                    -- show the content of the image. 
                    print(res.Body)
                    -- conver the table to a quad ? 
-                   quad.Width = 300
-                   quad.Height = 300
-                --    quad.Image = res.Body 
+                   local quad = Quad()
+                   quad.Width = 20
+                   quad.Height = 20
+                   quad.Image = res.Body 
+                   quad:SetParent(Player)
                else
                    print("CAN'T FIND THE URL")
                end
