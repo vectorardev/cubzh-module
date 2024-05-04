@@ -1,11 +1,10 @@
-cubzhMod = {}
+local cubzhMod = {}
 
 cubzhMod.test = function(name)
-    print("HELLO!")
 end 
 
-cubzhMod.hello = function(pokemon) 
-    print("Hello")
+cubzhMod.test2 = function(name) 
+    print("HELLO!")
 end
 
 return cubzhMod
