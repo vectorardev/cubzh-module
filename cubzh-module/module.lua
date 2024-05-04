@@ -53,10 +53,11 @@ cubzhMod.sendRequestForImage = function()
                    print(res.Body)
                    -- conver the table to a quad ? 
                    local quad = Quad()
-                   quad.Width = 30
-                   quad.Height = 30
+                   quad.Width = 100
+                   quad.Height = 100
                    quad.Anchor = { 0.5, 0 }
                    quad.Image = res.Body 
+                   quad.Position = Player.Position 
                else
                    print("CAN'T FIND THE URL")
                end
