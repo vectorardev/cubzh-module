@@ -4,22 +4,8 @@ cubzhMod.test = function(name)
     print("HELLO!")
 end 
 
-cubzhMod.lee = function(pokemon) 
+cubzhMod.hello = function(pokemon) 
     print("Hello")
-    -- File:OpenAndReadAll(function(success, result)
-    --     -- success is a boolean
-    --     if not success then
-    --         print("Could not read file")
-    --         return
-    --     end
-    --     -- the user has cancelled the file selection
-    --     if result == nil then
-    --         print("No file selected")
-    --         return
-    --     end
-    --     local str = result:ToString()
-    --     print("Content: ", str)
-    -- end)
 end
 
 Client.OnStart = function() 
