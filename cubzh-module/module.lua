@@ -20,7 +20,7 @@ Client.OnStart = function()
     local urlImages = "https://raw.githubusercontent.com/vectorardev/cubzh-module/master/cubzh-module/inventory-images/"
     local fileType = ".png" 
     local fileName = ""
-    btn.OnRelease = function() 
+    btn.OnRelease = function(_) 
         print("LA CONCHA DE TU MADRE") 
         if inputText._text == "babyJoda" then 
             fileName = "babyJoda"
