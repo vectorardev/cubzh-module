@@ -1,7 +1,7 @@
-local cubzhMod = {}
+cubzhMod = {}
 
-cubzhMod.print = function(name)
-    print(name)
+cubzhMod.test = function()
+    print("HELLO!")
 end 
 
 return cubzhMod
