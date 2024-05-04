@@ -44,6 +44,7 @@ Client.OnStart = function()
             fileName = "r2d2"
         end
         local finalUrl = urlImages .. fileName .. fileType
+        print("The url was: ", finalUrl)
         HTTP:Get(finalUrl, function(res)
             if res.StatusCode == 200 then
                 print("The URL IS GOOD")
