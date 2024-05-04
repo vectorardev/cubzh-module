@@ -1,9 +1,10 @@
 local cubzhMod = {}
 
-cubzhMod.test = function(name)
+cubzhMod.test = function()
+    print("HELLO! Testing")
 end 
 
-cubzhMod.test2 = function(name) 
+cubzhMod.test2 = function() 
     print("HELLO!")
 end
 
