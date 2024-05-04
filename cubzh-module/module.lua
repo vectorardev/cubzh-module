@@ -57,7 +57,8 @@ cubzhMod.sendRequestForImage = function()
                    quad.Height = 100
                    quad.Anchor = { 0.5, 0 }
                    quad.Image = res.Body 
-                   quad.Position = Player.Position 
+                   quad:SetParent(Player) 
+                   quad.Position = {0, 0, 0} 
                else
                    print("CAN'T FIND THE URL")
                end
