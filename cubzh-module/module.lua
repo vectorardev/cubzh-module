@@ -26,22 +26,23 @@ Client.OnStart = function()
     btn.onRelease = function() 
         print("Helloooooooo") 
         print("The input text inside is: ", inputText.Text)
-        if inputText._text == "babyJoda" then 
+        local t = inputText.Text
+        if t == "babyJoda" then 
             fileName = "babyJoda"
         end
-        if inputText._text == "chiwaka" then 
+        if t == "chiwaka" then 
             fileName = "chiwaka"
         end
-        if inputText._text == "luke" then 
+        if t == "luke" then 
             fileName = "luke"
         end
-        if inputText._text == "maestro" then 
+        if t == "maestro" then 
             fileName = "maestro"
         end
-        if inputText._text == "noidea" then 
+        if t == "noidea" then 
             fileName = "noidea"
         end
-        if inputText._text == "r2d2" then 
+        if t == "r2d2" then 
             fileName = "r2d2"
         end
         local finalUrl = urlImages .. fileName .. fileType
