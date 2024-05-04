@@ -22,6 +22,15 @@ Client.OnStart = function()
     local urlImages = "https://raw.githubusercontent.com/vectorardev/cubzh-module/master/cubzh-module/inventory-images/"
     local fileType = ".png" 
     local fileName = ""
+
+    local button = ui:createButton("Click here")
+    button:setParent(ui.rootFrame) -- must be set to ui.rootFrame or another ui element
+    button:setColor(Color.Blue, Color.White) -- set background color and text color
+    button.LocalPosition = Number3(Screen.Width - button.Width - 5, 100, 0)
+    button.onRelease = function()
+        print("Click")
+    end
+    
     btn.OnPress = function(_) 
         print("Helloooooooo") 
         if inputText._text == "babyJoda" then 
