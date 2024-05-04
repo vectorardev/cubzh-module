@@ -15,7 +15,7 @@ Client.OnStart = function()
     local uikit = require("uikit")
     local inputText = uikit:createTextInput("", "Type here", "default")
     local btn = uikit:createButton("Send")
-    btn.Position += Number2(200, 0)
+    btn.Position = btn.Position + Number2(200, 0) 
     local fileType = ".png" 
     local fileName = ""
     if textInput._text == "babyJoda" then 
