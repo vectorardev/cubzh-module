@@ -90,8 +90,9 @@ end
 
 Client.DidReceiveEvent = function(event)
     print(event)
-    if event.action == "PlayerJoined" then
-        print(event.msg)
+    print(event.msg)
+    if event.msg == nil then
+        print("event.msg is equal to nil")
     end
 end
 
