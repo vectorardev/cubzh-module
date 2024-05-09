@@ -28,9 +28,10 @@ cubzhMod.showInventory = function()
     --- These items can be purchased or not. 
     --- Object that has the item, string name, image, button 
     ui = require("uikit")
-    bg = ui:createFrame(Color.Red)
+    bg = ui:createFrame(Color(84, 91, 232)) -- look at this function to know how to convert a quad into 2D camera space. 
     bg.Width = 300
     bg.Height = 300 
+    bg.Position = Number2(100, Screen.Height - 100)
 end
 
 cubzhMod.sendRequestForImage = function() 
@@ -90,14 +91,18 @@ end
 --- Server Code --- 
 
 Server.OnPlayerJoined = function(newPlayer) 
-    print(newPlayer.Username)
+    print("My name is: ", newPlayer.Username)
     local store = KeyValueStore(newPlayer.Username)
+    print("The value is: ", player_inventories["hello"])
     -- tabla items ? 
+    -- currently store:get, can't support tables directly, so need need to specify the elements. 
     store:get("items", function(success, results)
         if success then 
             print("Exist in the database")
         else
             print("Doesnt exist in the database")
+            -- we set the values for the first time. 
+            store:set("items", function(success))
         end
     end)
 
@@ -107,7 +112,9 @@ Server.OnStart = function()
     -- set here the items ? if locally 
     -- once the items, if new player saved a list for the player with KeyValueStore. 
     -- how we know how the player is called? We need to receive or either call Player class
-    -- if existing player, just check the list
+    -- if existing player, just check the list.
+    players_inventories = {}
+    player_inventories["hello"] = 30
 end
 
 return cubzhMod
