@@ -102,7 +102,7 @@ Server.OnPlayerJoined = function(newPlayer)
         else
             print("Doesnt exist in the database")
             -- we set the values for the first time. 
-            store:set("items", function(success))
+            -- store:set("items", function(success))
         end
     end)
 
