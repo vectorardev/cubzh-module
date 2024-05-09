@@ -21,22 +21,22 @@ cubzhMod = {}
 --     -- for this we need an object which holds the item ?, no, we just need an array that has the list of items and its state. 
 -- end
 
--- cubzhMod.showInventory = function()
---     --- Show Quad or Shape for the background 
---     --- Display all the items available. 
+cubzhMod.showInventory = function()
+    --- Show Quad or Shape for the background 
+    --- Display all the items available. 
 
---     --- These items can be purchased or not. 
---     --- Object that has the item, string name, image, button 
---     ui = require("uikit")
---     bg = ui:createFrame(Color.Red)
---     bg.Width = 300
---     bg.Height = 300 
--- end
+    --- These items can be purchased or not. 
+    --- Object that has the item, string name, image, button 
+    ui = require("uikit")
+    bg = ui:createFrame(Color.Red)
+    bg.Width = 300
+    bg.Height = 300 
+end
 
 cubzhMod.sendRequestForImage = function() 
        -- Read the files of the images in the folder
        images = {}
-    --    cubzhMod.showInventory()
+       cubzhMod.showInventory()
        --- Setting UI system
        ui = require("uikit")
        --- 
