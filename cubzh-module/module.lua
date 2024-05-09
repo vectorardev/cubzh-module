@@ -33,16 +33,10 @@ cubzhMod.showInventory = function()
     bg.Height = 300 
 end
 
-cubzhMod.showShape = function() 
-    print("Showing ")
-    local ui = require("uikit")
-    ui:createShape()
-end
-
 cubzhMod.sendRequestForImage = function() 
        -- Read the files of the images in the folder
        images = {}
-       cubzhMod.showInventory()
+    --    cubzhMod.showInventory()
        --- Setting UI system
        ui = require("uikit")
        --- 
