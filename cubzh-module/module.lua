@@ -121,13 +121,13 @@ Server.OnPlayerJoined = function(newPlayer)
 end
 
 players_inventories = {}
-player_inventories["hello"] = 30
 
 Server.OnStart = function()
     -- set here the items ? if locally 
     -- once the items, if new player saved a list for the player with KeyValueStore. 
     -- how we know how the player is called? We need to receive or either call Player class
     -- if existing player, just check the list.
+    player_inventories["hello"] = 30
 end
 
 return cubzhMod
