@@ -27,8 +27,8 @@ cubzhMod.showInventory = function()
 
     --- These items can be purchased or not. 
     --- Object that has the item, string name, image, button 
-    local ui = require("uikit")
-    local bg = ui:createFrame(Color.Red)
+    ui = require("uikit")
+    bg = ui:createFrame(Color.Red)
     bg.Width = 300
     bg.Height = 300 
 end
