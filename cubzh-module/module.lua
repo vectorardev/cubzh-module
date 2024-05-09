@@ -1,25 +1,25 @@
 cubzhMod = {}
 
--- inventory_list = {}
--- inventory_list["babyJoda"] = false
--- inventory_list["chiwaka"] = false
--- inventory_list["luke"] = false
--- inventory_list["maestro"] = false
--- inventory_list["noidea"] = false
--- inventory_list["r2d2"] = false
+inventory_list = {}
+inventory_list["babyJoda"] = false
+inventory_list["chiwaka"] = false
+inventory_list["luke"] = false
+inventory_list["maestro"] = false
+inventory_list["noidea"] = false
+inventory_list["r2d2"] = false
 
--- cubzhMod.test = function()
---     print("HELLO! Testing")
--- end 
+cubzhMod.test = function()
+    print("HELLO! Testing")
+end 
 
--- cubzhMod.create = function(_) 
---     print("HOlaaaa")
--- end 
--- how to make an array or map in lua 
--- cubzhMod.listItems = function()
---     -- Here we need to list the items that the player can buy and their states. 
---     -- for this we need an object which holds the item ?, no, we just need an array that has the list of items and its state. 
--- end
+cubzhMod.create = function(_) 
+    print("HOlaaaa")
+end 
+
+cubzhMod.listItems = function()
+    -- Here we need to list the items that the player can buy and their states. 
+    -- for this we need an object which holds the item ?, no, we just need an array that has the list of items and its state. 
+end
 
 cubzhMod.showInventory = function()
     --- Show Quad or Shape for the background 
@@ -89,24 +89,25 @@ end
 
 --- Server Code --- 
 
--- Server.OnPlayerJoined = function(newPlayer) 
---     print(newPlayer.Username)
---     local store = KeyValueStore(newPlayer.Username)
---     -- tabla items ? 
---     store:get("items", function(success, results)
---         if success then 
---             print("Exist in the database")
---         else
---             print("Doesnt exist in the database")
---     end)
+Server.OnPlayerJoined = function(newPlayer) 
+    print(newPlayer.Username)
+    local store = KeyValueStore(newPlayer.Username)
+    -- tabla items ? 
+    store:get("items", function(success, results)
+        if success then 
+            print("Exist in the database")
+        else
+            print("Doesnt exist in the database")
+        end
+    end)
 
--- end
+end
 
--- Server.OnStart = function()
---     -- set here the items ? if locally 
---     -- once the items, if new player saved a list for the player with KeyValueStore. 
---     -- how we know how the player is called? We need to receive or either call Player class
---     -- if existing player, just check the list
--- end
+Server.OnStart = function()
+    -- set here the items ? if locally 
+    -- once the items, if new player saved a list for the player with KeyValueStore. 
+    -- how we know how the player is called? We need to receive or either call Player class
+    -- if existing player, just check the list
+end
 
 return cubzhMod
