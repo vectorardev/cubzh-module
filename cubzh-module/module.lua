@@ -1,5 +1,13 @@
 cubzhMod = {}
 
+inventory_list = {}
+inventory_list["babyJoda"] = false
+inventory_list["chiwaka"] = false
+inventory_list["luke"] = false
+inventory_list["maestro"] = false
+inventory_list["noidea"] = false
+inventory_list["r2d2"] = false
+
 cubzhMod.test = function()
     print("HELLO! Testing")
 end 
@@ -7,10 +15,34 @@ end
 cubzhMod.create = function(_) 
     print("HOlaaaa")
 end 
+-- how to make an array or map in lua 
+cubzhMod.listItems = function()
+    -- Here we need to list the items that the player can buy and their states. 
+    -- for this we need an object which holds the item ?, no, we just need an array that has the list of items and its state. 
+end
+
+cubzhMod.showInventory = function()
+    --- Show Quad or Shape for the background 
+    --- Display all the items available. 
+
+    --- These items can be purchased or not. 
+    --- Object that has the item, string name, image, button 
+    local ui = require("uikit")
+    local bg = ui:createFrame(Color.Red)
+    bg.Width = 300
+    bg.Height = 300 
+end
+
+cubzhMod.showShape = function() 
+    print("Showing ")
+    local ui = require("uikit")
+    ui:createShape()
+end
 
 cubzhMod.sendRequestForImage = function() 
        -- Read the files of the images in the folder
        images = {}
+       cubzhMod.showInventory()
        --- Setting UI system
        ui = require("uikit")
        --- 
@@ -23,8 +55,6 @@ cubzhMod.sendRequestForImage = function()
        local fileType = ".png" 
        local fileName = ""
        btn.onRelease = function() 
-           print("Helloooooooo") 
-           print("The input text inside is: ", inputText.Text)
            local t = inputText.Text
            if t == "babyJoda" then 
                fileName = "babyJoda"
@@ -45,7 +75,6 @@ cubzhMod.sendRequestForImage = function()
                fileName = "r2d2"
            end
            local finalUrl = urlImages .. fileName .. fileType
-           print("The url was: ", finalUrl)
            HTTP:Get(finalUrl, function(res)
                if res.StatusCode == 200 then
                    print("The URL IS GOOD")
@@ -62,6 +91,28 @@ cubzhMod.sendRequestForImage = function()
                end
            end)
        end
+end
+
+--- Server Code --- 
+
+Server.OnPlayerJoined = function(newPlayer) 
+    print(newPlayer.Username)
+    local store = KeyValueStore(newPlayer.Username)
+    -- tabla items ? 
+    store:get("items", function(success, results)
+        if success then 
+            print("Exist in the database")
+        else
+            print("Doesnt exist in the database")
+    end)
+
+end
+
+Server.OnStart = function() 
+    -- set here the items ? if locally 
+    -- once the items, if new player saved a list for the player with KeyValueStore. 
+    -- how we know how the player is called? We need to receive or either call Player class
+    -- if existing player, just check the list
 end
 
 return cubzhMod
