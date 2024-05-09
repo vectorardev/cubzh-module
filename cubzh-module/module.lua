@@ -88,12 +88,23 @@ cubzhMod.sendRequestForImage = function()
        end
 end
 
+Client.DidReceiveEvent = function(event)
+    print(event)
+    if event.action == "PlayerJoined" then
+        print(event.msg)
+    end
+end
+
 --- Server Code --- 
 
 Server.OnPlayerJoined = function(newPlayer) 
     print("My name is: ", newPlayer.Username)
     local store = KeyValueStore(newPlayer.Username)
     print("The value is: ", player_inventories["hello"])
+    local event = Event()
+    event.action = "PlayerJoined"
+    event.msg = player_inventories["hello"]
+    event:SendTo(Player)
     -- tabla items ? 
     -- currently store:get, can't support tables directly, so need need to specify the elements. 
     store:get("items", function(success, results)
