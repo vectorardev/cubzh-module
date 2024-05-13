@@ -118,9 +118,12 @@ inventory_ui.init = function(items)
     inventory_ui.bg.Position = Number3(Screen.Width / 2, Screen.Height / 2, 0) 
     -- display items received and put them as a child of the frame
     -- items is a table with {key: string, value: bool}
+    local itemCount = 0
     for k,v in pairs(items) do
         for n,r in pairs(v) do
-            inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position - Number3(inventory_ui.bg.Width / 2 + 10, inventory_ui.bg.Height / 2 + 10, 0), r)
+            itemCount = itemCount + 10
+            ---Number3(inventory_ui.bg.Width / 2 + 10, inventory_ui.bg.Height / 2 + 10, 0)
+            inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position + Number3(0, itemCount, 0), r)
         end
     end
 end
