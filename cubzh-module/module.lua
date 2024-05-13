@@ -8,13 +8,13 @@ inventory_list["maestro"] = false
 inventory_list["noidea"] = false
 inventory_list["r2d2"] = false
 
-function printItems(results) {
+function printItems(results) 
     for k,v in pairs(results) do 
         for n,r in pairs(v) do 
             print("N and R are: ", r)
         end
     end
-}
+end
 
 cubzhMod.createAndInitButtonsTesting = function(name1, name2)
     local ui = require("uikit")
