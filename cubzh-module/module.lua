@@ -59,7 +59,7 @@ end
 
 --- This function is executed inside Server.OnPlayerJoin
 cubzhMod.testingPlayer = function(u)
-    local store = KeyValueStore(username)
+    local store = KeyValueStore(u)
     print("My name is: ", u)
     store:Get("items", function(success, results) 
         print("player joined was: ", success)
@@ -74,9 +74,9 @@ cubzhMod.testingPlayer = function(u)
                 end
             end
             if count > 0 then   
-                print("Jugador con nombre: ", username, "tiene items")
+                print("Jugador con nombre: ", u, "tiene items")
             else 
-                print("Jugador con nombre: ", username, "es nuevo en la sala")
+                print("Jugador con nombre: ", u, "es nuevo en la sala")
             end
             if count == 0 then 
                 print("The table is empty")
