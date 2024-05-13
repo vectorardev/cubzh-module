@@ -83,12 +83,14 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     image = ui:createFrame(Color.White)
     image.Width = 65
     image.Height = 65
-    image:SetParent(bg)
+    image.Position = bg.Position
+    -- image:SetParent(bg) [object:SetParent] argument 1 should have Object component
     -- Make a http or get the image from the repo (sendRequestForImage)
     -- Set the text of the item
     itemName = ui:createText(text)
-    itemName:SetParent(bg)
+    -- itemName:SetParent(bg)
     itemName:SetColor(Color.black)
+    itemName.Position = bg.Position
     -- create the button to purchase the item
     local buttonName = ""
     if purchasedOrNot then
@@ -97,9 +99,8 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
         buttonName = "Buy"
     end
     purchaseButton = ui:createButton(buttonName)
-    purchaseButton:SetParent(bg)
-    purchaseButton.Position = Number3(0,0,0)
-    purchaseButton.Position = purchaseButton.Position + Number3(20,0,0)
+    -- purchaseButton:SetParent(bg)
+    purchaseButton.Position = bg.Position + Number3(20,0,0)
 end
 
 inventory_ui.init = function(items)
