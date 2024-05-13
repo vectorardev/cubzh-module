@@ -16,20 +16,32 @@ function printItems(results)
     end
 end
 
-cubzhMod.createAndInitButtonsTesting = function(name1, name2)
+cubzhMod.createAndInitButtonsTesting = function(name1, name2, playerName)
     local ui = require("uikit")
+    local store = KeyValueStore(playerName)
     btn = ui:createButton(name1)
     btn.onRelease = function()
-        local ev = Event()
-        ev.action = "Reset"
-        ev:SendTo(Server)
+		--- Get the items and change the result ? 
+		store:Get("items", function(success, results)
+            if success then
+                printItems(results)
+            end
+		end)
+		store:Set("items", {}, function(success)
+			if success then
+				print("Tabla borrada")
+			end
+		end)
     end
     btn2 = ui:createButton(name2)
     btn2.Position = btn.Position + Number3(btn.Width, 0, 0)
     btn2.onRelease = function()
-        local ev = Event()
-        ev.action = "Print"
-        ev:SendTo(Server)
+		--- Get the items and change the result ? 
+		store:Get("items", function(success, results)
+            if success then
+                printItems(results)
+            end
+		end)
     end
 end
 
