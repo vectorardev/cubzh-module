@@ -68,6 +68,74 @@ cubzhMod.serverReceiveEventForData = function(event)
     end
 end
 
+inventory_ui = {}
+
+inventory_ui.state = false
+
+inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
+    -- Create the frame for the item
+    local ui = require("uikit")
+    bg = ui:createFrame(color)
+    bg.Width = 150
+    bg.Height = 75
+    bg.Position = position
+    -- Create the image inside the frame to display the item 
+    image = ui:createFrame(Color.White)
+    image.Width = 65
+    image.Height = 65
+    image:SetParent(bg)
+    -- Make a http or get the image from the repo (sendRequestForImage)
+    -- Set the text of the item
+    itemName = ui:createText(text)
+    itemName:SetParent(bg)
+    itemName:SetColor(Color.black)
+    -- create the button to purchase the item
+    local buttonName = ""
+    if purchasedOrNot then
+        buttonName = "Purchased"
+    else
+        buttonName = "Buy"
+    end
+    purchaseButton = ui:createButton(buttonName)
+    purchaseButton:SetParent(bg)
+    purchaseButton.Position = Number3(0,0,0)
+    purchaseButton.Position = purchaseButton.Position + Number3(20,0,0)
+end
+
+inventory_ui.init = function(items)
+    -- Create the frame and have the set the properties (bg)
+    if items then 
+        print("Intiating the inventory_ui")
+    else 
+        print("items is not valid")
+        return
+    end
+    local ui = require("uikit")
+    inventory_ui.bg = ui:createFrame(Color(92, 179, 219))
+    inventory_ui.bg.Width = 300
+    inventory_ui.bg.Height = 500
+    inventory_ui.bg.Position = Number3(Screen.Width / 2, Screen.Height / 2, 0) 
+    -- display items received and put them as a child of the frame
+    -- items is a table with {key: string, value: bool}
+    for k,v in pairs(items) do
+        for n,r in pairs(v) do
+            inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position - Number3(inventory_ui.bg.Width / 2 + 10, inventory_ui.bg.Height / 2 + 10, 0), r)
+    end
+end
+
+inventory_ui.toggleHide = function() 
+    if inventory_ui.bg then 
+        inventory_ui.state = not inventory_ui.state
+        if inventory_ui.state then
+            inventory_ui.bg:setColor(Color.Red)
+        else
+            inventory_ui.bg:setColor(Color(0,0,0,0))
+        end
+    else
+        print("inventory_ui.bg is nil")
+    end
+end
+
 --- This function is executed inside Server.OnPlayerJoin
 cubzhMod.initOrGetPlayer = function(u)
     print("My name is: ", u)
@@ -106,6 +174,7 @@ cubzhMod.initOrGetPlayer = function(u)
             else 
                 print("count is not equal to 0, so the player has items")
                 printItems(results)
+                inventory_ui.init(results)
             end
         end
     end)
