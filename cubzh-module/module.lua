@@ -97,6 +97,7 @@ cubzhMod.checkPlayer = function(newPlayer)
                     end
                 end
             end
+        end
     end)
 end
 
