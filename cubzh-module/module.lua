@@ -76,7 +76,7 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     -- Create the frame for the item
     local ui = require("uikit")
     bg = ui:createFrame(color)
-    bg.Width = 150
+    bg.Width = 250
     bg.Height = 75
     bg.Position = position
     -- Create the image inside the frame to display the item 
@@ -113,7 +113,7 @@ inventory_ui.init = function(items)
     end
     local ui = require("uikit")
     inventory_ui.bg = ui:createFrame(Color(92, 179, 219))
-    inventory_ui.bg.Width = 400
+    inventory_ui.bg.Width = 300
     inventory_ui.bg.Height = 500
     inventory_ui.bg.Position = Number3(Screen.Width / 2 - inventory_ui.bg.Width / 2, Screen.Height / 2 - inventory_ui.bg.Height / 2, 0) 
     -- display items received and put them as a child of the frame
