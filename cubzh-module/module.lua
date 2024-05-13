@@ -57,9 +57,9 @@ cubzhMod.serverReceiveEventForData = function(event)
 end
 
 --- This function is executed inside Server.OnPlayerJoin
-cubzhMod.checkPlayer = function(newPlayer)
-    local store = KeyValueStore(newPlayer.Username)
-    print("My name is: ", newPlayer.Username)
+cubzhMod.checkPlayer = function(username)
+    local store = KeyValueStore(username)
+    print("My name is: ", username)
     store:Get("items", function(success, results) 
         print("player joined was: ", success)
         if success then 
@@ -73,19 +73,20 @@ cubzhMod.checkPlayer = function(newPlayer)
                 end
             end
             if count > 0 then   
-                print("Jugador con nombre: ", newPlayer.Username, "tiene items")
+                print("Jugador con nombre: ", username, "tiene items")
             else 
-                print("Jugador con nombre: ", newPlayer.Username, "es nuevo en la sala")
+                print("Jugador con nombre: ", username, "es nuevo en la sala")
             end
             if count == 0 then 
                 print("The table is empty")
                 store:Set("items", inventory_list, function(success) 
                     if success then
                         print("The table was set for the first time")
-                        local ev = Event()
-                        ev.action = "Already"
-                        ev.t = results
-                        ev:SendTo(Players)
+                        store:Get("items", function(success, results)
+                            if success then 
+                                printItems(results)
+                            end
+                        end)
                     else
                         print("The table couldn't be filled for the first time")
                     end
