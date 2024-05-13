@@ -89,7 +89,7 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     -- Set the text of the item
     itemName = ui:createText(text)
     -- itemName:SetParent(bg)
-    itemName:SetColor(Color.black)
+    -- itemName:SetColor(Color.black)
     itemName.Position = bg.Position
     -- create the button to purchase the item
     local buttonName = ""
