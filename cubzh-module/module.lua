@@ -57,9 +57,9 @@ cubzhMod.serverReceiveEventForData = function(event)
 end
 
 --- This function is executed inside Server.OnPlayerJoin
-cubzhMod.checkPlayer = function(username)
+cubzhMod.testingPlayer = function(u)
     -- local store = KeyValueStore(username)
-    print("My name is: ", username)
+    print("My name is: ", u)
     -- store:Get("items", function(success, results) 
     --     print("player joined was: ", success)
     --     if success then 
