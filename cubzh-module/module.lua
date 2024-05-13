@@ -8,30 +8,96 @@ inventory_list["maestro"] = false
 inventory_list["noidea"] = false
 inventory_list["r2d2"] = false
 
-cubzhMod.test = function()
-    print("HELLO! Testing")
-end 
+function printItems(results) {
+    for k,v in pairs(results) do 
+        for n,r in pairs(v) do 
+            print("N and R are: ", r)
+        end
+    end
+}
 
-cubzhMod.create = function(_) 
-    print("HOlaaaa")
-end 
-
-cubzhMod.listItems = function()
-    -- Here we need to list the items that the player can buy and their states. 
-    -- for this we need an object which holds the item ?, no, we just need an array that has the list of items and its state. 
+cubzhMod.createAndInitButtonsTesting = function(name1, name2)
+    local ui = require("uikit")
+    btn = ui:createButton(name1)
+    btn.onRelease = function()
+        local ev = Event()
+        ev.action = "Reset"
+        ev:SendTo(Server)
+    end
+    btn2 = ui:createButton(name2)
+    btn2.Position = btn.Position + Number3(btn.Width, 0, 0)
+    btn2.onRelease = function()
+        local ev = Event()
+        ev.action = "Print"
+        ev:SendTo(Server)
+    end
 end
 
-cubzhMod.showInventory = function()
-    --- Show Quad or Shape for the background 
-    --- Display all the items available. 
+--make a function to check if the player has entered before
+-- or not
+cubzhMod.serverReceiveEventForData = function(event)
+    -- using my own nickname to test the code
+    local store = KeyValueStore("vectorwins")
+    if event.action == "Reset" then
+        -- Get the items and change the result ? 
+        store:Get("items", function(success, results) 
+            if success then 
+                printItems(results)
+            end
+        end)
+        store:Set("items", {}, function(success) 
+            if success then 
+                print("Tabla borrada")
+            end
+        end)
+    end
+    if event.action == "Print" then 
+        printItems(results)
+    end
+end
 
-    --- These items can be purchased or not. 
-    --- Object that has the item, string name, image, button 
-    ui = require("uikit")
-    bg = ui:createFrame(Color(84, 91, 232)) -- look at this function to know how to convert a quad into 2D camera space. 
-    bg.Width = 300
-    bg.Height = 300 
-    bg.Position = Number2(100, Screen.Height - 100)
+--- This function is executed inside Server.OnPlayerJoin
+cubzhMod.checkPlayer = function(newPlayer)
+    local store = KeyValueStore(newPlayer.Username)
+    store:Get("items", function(success, results) 
+        print("player joined was: ", success)
+        if success then 
+            --- The player does exist in the KeyValue thing ? 
+            local count = 0
+            for k,v in pairs(results) do
+                if k == "items" then
+                    for n,s in pairs(v) do 
+                        count = count + 1
+                    end
+                end
+            end
+            if count > 0 then   
+                print("Jugador con nombre: ", newPlayer.Username, "tiene items")
+            else 
+                print("Jugador con nombre: ", newPlayer.Username, "es nuevo en la sala")
+            end
+            if count == 0 then 
+                print("The table is empty")
+                store:Set("items", inventory_list, function(success) 
+                    if success then
+                        print("The table was set for the first time")
+                        local ev = Event()
+                        ev.action = "Already"
+                        ev.t = results
+                        ev:SendTo(Players)
+                    else
+                        print("The table couldn't be filled for the first time")
+                    end
+                end)
+            else 
+                print("count is not equal to 0, so the player has items")
+                for k,v in pairs(results) do 
+                    for r,s in pairs(v) do 
+                        print(s, "with value: ", r)
+                    end
+                end
+            end
+    end)
 end
 
 cubzhMod.sendRequestForImage = function() 
@@ -86,48 +152,6 @@ cubzhMod.sendRequestForImage = function()
                end
            end)
        end
-end
-
-Client.DidReceiveEvent = function(event)
-    print(event)
-    print(event.msg)
-    if event.msg == nil then
-        print("event.msg is equal to nil")
-    end
-end
-
---- Server Code --- 
-
-Server.OnPlayerJoined = function(newPlayer) 
-    print("My name is: ", newPlayer.Username)
-    local store = KeyValueStore(newPlayer.Username)
-    print("The value is: ", player_inventories["hello"])
-    local event = Event()
-    event.action = "PlayerJoined"
-    event.msg = player_inventories["hello"]
-    event:SendTo(Player)
-    -- tabla items ? 
-    -- currently store:get, can't support tables directly, so need need to specify the elements. 
-    store:get("items", function(success, results)
-        if success then 
-            print("Exist in the database")
-        else
-            print("Doesnt exist in the database")
-            -- we set the values for the first time. 
-            -- store:set("items", function(success))
-        end
-    end)
-
-end
-
-players_inventories = {}
-
-Server.OnStart = function()
-    -- set here the items ? if locally 
-    -- once the items, if new player saved a list for the player with KeyValueStore. 
-    -- how we know how the player is called? We need to receive or either call Player class
-    -- if existing player, just check the list.
-    player_inventories["hello"] = 30
 end
 
 return cubzhMod
