@@ -59,6 +59,7 @@ end
 --- This function is executed inside Server.OnPlayerJoin
 cubzhMod.checkPlayer = function(newPlayer)
     local store = KeyValueStore(newPlayer.Username)
+    print("My name is: ", newPlayer.Username)
     store:Get("items", function(success, results) 
         print("player joined was: ", success)
         if success then 
