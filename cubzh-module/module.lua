@@ -11,7 +11,7 @@ inventory_list["r2d2"] = false
 function printItems(results) 
     for k,v in pairs(results) do 
         for n,r in pairs(v) do 
-            print("N and R are: ", r)
+            print("N and R are: ", n, r)
         end
     end
 end
