@@ -93,7 +93,7 @@ cubzhMod.initOrGetPlayer = function(u)
                 end)
             else 
                 print("count is not equal to 0, so the player has items")
-                print(results)
+                printItems(results)
             end
         end
     end)
