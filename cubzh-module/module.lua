@@ -60,47 +60,47 @@ end
 cubzhMod.checkPlayer = function(username)
     local store = KeyValueStore(username)
     print("My name is: ", username)
-    store:Get("items", function(success, results) 
-        print("player joined was: ", success)
-        if success then 
-            --- The player does exist in the KeyValue thing ? 
-            local count = 0
-            for k,v in pairs(results) do
-                if k == "items" then
-                    for n,s in pairs(v) do 
-                        count = count + 1
-                    end
-                end
-            end
-            if count > 0 then   
-                print("Jugador con nombre: ", username, "tiene items")
-            else 
-                print("Jugador con nombre: ", username, "es nuevo en la sala")
-            end
-            if count == 0 then 
-                print("The table is empty")
-                store:Set("items", inventory_list, function(success) 
-                    if success then
-                        print("The table was set for the first time")
-                        store:Get("items", function(success, results)
-                            if success then 
-                                printItems(results)
-                            end
-                        end)
-                    else
-                        print("The table couldn't be filled for the first time")
-                    end
-                end)
-            else 
-                print("count is not equal to 0, so the player has items")
-                for k,v in pairs(results) do 
-                    for r,s in pairs(v) do 
-                        print(s, "with value: ", r)
-                    end
-                end
-            end
-        end
-    end)
+    -- store:Get("items", function(success, results) 
+    --     print("player joined was: ", success)
+    --     if success then 
+    --         --- The player does exist in the KeyValue thing ? 
+    --         local count = 0
+    --         for k,v in pairs(results) do
+    --             if k == "items" then
+    --                 for n,s in pairs(v) do 
+    --                     count = count + 1
+    --                 end
+    --             end
+    --         end
+    --         if count > 0 then   
+    --             print("Jugador con nombre: ", username, "tiene items")
+    --         else 
+    --             print("Jugador con nombre: ", username, "es nuevo en la sala")
+    --         end
+    --         if count == 0 then 
+    --             print("The table is empty")
+    --             store:Set("items", inventory_list, function(success) 
+    --                 if success then
+    --                     print("The table was set for the first time")
+    --                     store:Get("items", function(success, results)
+    --                         if success then 
+    --                             printItems(results)
+    --                         end
+    --                     end)
+    --                 else
+    --                     print("The table couldn't be filled for the first time")
+    --                 end
+    --             end)
+    --         else 
+    --             print("count is not equal to 0, so the player has items")
+    --             for k,v in pairs(results) do 
+    --                 for r,s in pairs(v) do 
+    --                     print(s, "with value: ", r)
+    --                 end
+    --             end
+    --         end
+    --     end
+    -- end)
 end
 
 cubzhMod.sendRequestForImage = function() 
