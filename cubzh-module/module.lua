@@ -120,6 +120,7 @@ inventory_ui.init = function(items)
     for k,v in pairs(items) do
         for n,r in pairs(v) do
             inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position - Number3(inventory_ui.bg.Width / 2 + 10, inventory_ui.bg.Height / 2 + 10, 0), r)
+        end
     end
 end
 
