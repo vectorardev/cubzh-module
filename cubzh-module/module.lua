@@ -121,36 +121,36 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
         buttonName = "Buy"
         purchaseButton.Text = buttonName 
         --- test if we have purchased this item or not. 
-        purchaseButton.onRelease = function()
-            local store = KeyValueStore(playerName)
-            store:Get("items", function(success, results) 
-                if success then
-                    local aux = results
-                    -- search inside this table the element to change. 
-                    for k,v in pairs(aux) do 
-                        for n,r in pairs(v) do 
-                            if n == text then -- assuming text its equal to element list
-                                aux[n] = true -- lo marcamos como comprado. 
-                                store:Set("items", {}, function(success) 
-                                    if success then 
-                                        -- actualizar el boton aqui de "Buy" a "Own"
-                                    end
-                                end)
-                                -- seteamos items to aux. 
-                                store:Set("items", aux, function(success) 
-                                    if success then 
-                                        -- actualizar el boton aqui de "Buy" a "Own"
-                                        purchaseButton.Text = "Own" 
-                                    end
-                                end)
-                                -- exit to avoid problems
-                                break
-                            end
-                        end
-                    end
-                end
-            end)
-        end
+        -- purchaseButton.onRelease = function()
+        --     local store = KeyValueStore(playerName)
+        --     store:Get("items", function(success, results) 
+        --         if success then
+        --             local aux = results
+        --             -- search inside this table the element to change. 
+        --             for k,v in pairs(aux) do 
+        --                 for n,r in pairs(v) do 
+        --                     if n == text then -- assuming text its equal to element list
+        --                         aux[n] = true -- lo marcamos como comprado. 
+        --                         store:Set("items", {}, function(success) 
+        --                             if success then 
+        --                                 -- actualizar el boton aqui de "Buy" a "Own"
+        --                             end
+        --                         end)
+        --                         -- seteamos items to aux. 
+        --                         store:Set("items", aux, function(success) 
+        --                             if success then 
+        --                                 -- actualizar el boton aqui de "Buy" a "Own"
+        --                                 purchaseButton.Text = "Own" 
+        --                             end
+        --                         end)
+        --                         -- exit to avoid problems
+        --                         break
+        --                     end
+        --                 end
+        --             end
+        --         end
+        --     end)
+        -- end
     end
 end
 
@@ -176,15 +176,15 @@ inventory_ui.init = function(items, playerName)
         end
     end
     print("AmountOfElements: ", amountOfElements)
-    -- local itemCount = 0
-    -- local i = 0
-    -- for k,v in pairs(items) do
-    --     for n,r in pairs(v) do
-    --         itemCount = i * 75
-    --         inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position + Number3(25, 30 + itemCount, 0), r, playerName) --6*65 = 390, 75 - 65 = 10 * 5 = 50 = 60px restantes.
-    --         i = i + 1
-    --     end
-    -- end
+    local itemCount = 0
+    local i = 0
+    for k,v in pairs(items) do
+        for n,r in pairs(v) do
+            itemCount = i * 75
+            inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position + Number3(25, 30 + itemCount, 0), r, playerName) --6*65 = 390, 75 - 65 = 10 * 5 = 50 = 60px restantes.
+            i = i + 1
+        end
+    end
 end
 
 inventory_ui.toggleHide = function() 
