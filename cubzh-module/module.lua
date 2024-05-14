@@ -82,10 +82,11 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
     bg.Position = position
     -- Create the image inside the frame to display the item 
     local image = ui:createFrame(Color.White)
+    image:setParent(bg)
     image.Width = 50
     image.Height = 50
     local marginImage = (bg.Height - image.Height) / 2
-    image.Position = bg.Position + Number3(marginImage, marginImage, 0)
+    image.Position = Number3(marginImage, marginImage, 0)
     -- load imageurl on the frame (URL HTTP)
     local urlImages = "https://raw.githubusercontent.com/vectorardev/cubzh-module/master/cubzh-module/inventory-images/"
     local fileType = ".png" 
@@ -98,7 +99,6 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
             print("CAN'T FIND THE URL")
         end
     end)
-    image:setParent(bg)
     -- image:SetParent(bg) [object:SetParent] argument 1 should have Object component
     -- Make a http or get the image from the repo (sendRequestForImage)
     -- Set the text of the item
@@ -107,13 +107,14 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
     -- itemName:SetColor(Color.black)
     local textX = bg.Width / 2 - itemName.Width / 2
     local textY = bg.Height / 2 - itemName.Height / 2
-    itemName.Position = bg.Position + Number3(textX, textY, 0)
     itemName:setParent(bg)
+    itemName.Position = Number3(textX, textY, 0)
     -- create the button to purchase the item
     local buttonName = ""
     local purchaseButton = ui:createButton("")
+    purchaseButton:setParent(bg)
     -- purchaseButton:SetParent(bg)
-    purchaseButton.Position = bg.Position + Number3(bg.Width - 60, bg.Height / 2 - purchaseButton.Height / 2, 0)
+    purchaseButton.Position = Number3(bg.Width - 60, bg.Height / 2 - purchaseButton.Height / 2, 0)
     if purchasedOrNot then
         buttonName = "Own"
         purchaseButton.Text = buttonName
@@ -125,7 +126,6 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
             inventory_ui.purchaseItem(playerName, text, purchaseButton)
         end
     end
-    purchaseButton:setParent(bg)
 end
 
 inventory_ui.purchaseItem = function(playerName, key, btn) 
