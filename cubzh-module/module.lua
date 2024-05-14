@@ -116,10 +116,10 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
     bg.Height / 2 - purchaseButton.Height / 2,0)
     if purchasedOrNot then
         buttonName = "Own"
-        purchaseButton:setText(buttonName)
+        purchaseButton.Text = buttonName
     else
         buttonName = "Buy"
-        purchaseButton:setText(buttonName)
+        purchaseButton.Text = buttonName 
         --- test if we have purchased this item or not. 
         purchaseButton.onRelease = function()
             local store = KeyValueStore(playerName)
@@ -135,7 +135,7 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
                                 store:Set("items", aux, function(success) 
                                     if success then 
                                         -- actualizar el boton aqui de "Buy" a "Own"
-                                        purchaseButton:setText("Own")
+                                        purchaseButton.Text = "Own" 
                                     end
                                 end)
                             end
