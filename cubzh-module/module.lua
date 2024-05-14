@@ -92,7 +92,9 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     itemName = ui:createText(text)
     -- itemName:SetParent(bg)
     -- itemName:SetColor(Color.black)
-    itemName.Position = bg.Position + Number3(bg.Width/2, 0, 0)
+    local textX = bg.Width / 2 - itemName.Width / 2
+    local textY = bg.Height / 2 - itemName.Height / 2
+    itemName.Position = bg.Position + Number3(textX, textY, 0)
     -- create the button to purchase the item
     local buttonName = ""
     if purchasedOrNot then
@@ -102,7 +104,8 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     end
     purchaseButton = ui:createButton(buttonName)
     -- purchaseButton:SetParent(bg)
-    purchaseButton.Position = bg.Position + Number3(bg.Width-purchaseButton.Width/2-margin,0,0)
+    purchaseButton.Position = bg.Position + Number3(bg.Width-purchaseButton.Width-margin,
+    bg.Height / 2 - purchaseButton.Height / 2,0)
 end
 
 inventory_ui.init = function(items)
