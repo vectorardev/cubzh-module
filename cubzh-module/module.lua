@@ -197,8 +197,16 @@ end
 inventory_ui.toggleHide = function() 
     if inventory_ui.bg then 
         inventory_ui.state = not inventory_ui.state
+        local bgColor = inventory_ui.bg.Color 
+        --- get childs original colors
         if inventory_ui.state then
-            inventory_ui.bg:setColor(Color.Red)
+            inventory_ui.bg:setColor(bgColor)
+            for _, child in pairs(inventory_ui.bg.children) do
+                print(child)
+                if child.Color then 
+                    print("Helllooooooo")
+                end
+            end
         else
             inventory_ui.bg:setColor(Color(0,0,0,0))
         end
