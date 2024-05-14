@@ -237,8 +237,8 @@ cubzhMod.initOrGetPlayer = function(u)
             else 
                 print("count is not equal to 0, so the player has items")
                 printItems(results)
-                inventory_ui.init(results, u)
             end
+            inventory_ui.init(results, u)
         end
     end)
 end
