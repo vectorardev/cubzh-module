@@ -84,7 +84,8 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     image = ui:createFrame(Color.White)
     image.Width = 50
     image.Height = 50
-    image.Position = bg.Position + Number3(image.Width/2+margin, 0, 0)
+    local marginImage = bg.Height - image.Height 
+    image.Position = bg.Position + Number3(marginImage, marginImage, 0)
     -- image:SetParent(bg) [object:SetParent] argument 1 should have Object component
     -- Make a http or get the image from the repo (sendRequestForImage)
     -- Set the text of the item
