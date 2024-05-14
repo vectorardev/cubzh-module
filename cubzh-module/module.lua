@@ -199,6 +199,11 @@ inventory_ui.toggleHide = function()
         inventory_ui.state = not inventory_ui.state
         local bgColor = inventory_ui.bg.Color 
         print(inventory_ui.bg.children)
+        local count = #inventory_ui.bg.children
+        print("Number of children: ", count)
+        for k, v in pairs(inventory_ui.bg.children) do
+            print("Key:", k, "Type:", type(v))
+        end        
         for k,v in pairs(inventory_ui.bg.children) do 
             for n, s in pairs(v) do 
                 print(n, s)
