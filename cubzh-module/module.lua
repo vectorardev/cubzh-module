@@ -175,6 +175,7 @@ inventory_ui.init = function(items, playerName)
             amountOfElements = amountOfElements + 1
         end
     end
+    print("AmountOfElements: ", amountOfElements)
     -- local itemCount = 0
     -- local i = 0
     -- for k,v in pairs(items) do
