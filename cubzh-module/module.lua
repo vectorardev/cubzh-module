@@ -204,6 +204,10 @@ inventory_ui.toggleHide = function()
     end
 end
 
+cubzhMod.toggleInventory = function()
+    inventory_ui.toggleHide()
+end
+
 --- This function is executed inside Server.OnPlayerJoin
 cubzhMod.initOrGetPlayer = function(u)
     print("My name is: ", u)
