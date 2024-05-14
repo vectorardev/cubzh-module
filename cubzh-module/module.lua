@@ -135,6 +135,7 @@ inventory_ui.purchaseItem = function(playerName, key)
                 print("Dime los valores,", k,v)
                 for n,s in pairs(v) do 
                     print("valores de dentro,", n,s)
+                end
             end
             if items[key] ~= nil then 
                 items[key] = true 
