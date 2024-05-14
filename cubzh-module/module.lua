@@ -72,7 +72,7 @@ inventory_ui = {}
 
 inventory_ui.state = false
 
-inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
+inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, playerName)
     -- Create the frame for the item
     local margin = 10
     local ui = require("uikit")
@@ -93,10 +93,7 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     local finalUrl = urlImages .. fileName .. fileType
     HTTP:Get(finalUrl, function(res)
         if res.StatusCode == 200 then
-            print("The URL IS GOOD")
-            -- show the content of the image. 
             print(res.Body)
-            -- conver the table to a quad ? 
             image:setImage(res.Body)
         else
             print("CAN'T FIND THE URL")
@@ -105,7 +102,7 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     -- image:SetParent(bg) [object:SetParent] argument 1 should have Object component
     -- Make a http or get the image from the repo (sendRequestForImage)
     -- Set the text of the item
-    itemName = ui:createText(text)
+    local itemName = ui:createText(text)
     -- itemName:SetParent(bg)
     -- itemName:SetColor(Color.black)
     local textX = bg.Width / 2 - itemName.Width / 2
@@ -113,18 +110,44 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     itemName.Position = bg.Position + Number3(textX, textY, 0)
     -- create the button to purchase the item
     local buttonName = ""
-    if purchasedOrNot then
-        buttonName = "Purchased"
-    else
-        buttonName = "Buy"
-    end
-    purchaseButton = ui:createButton(buttonName)
+    local purchaseButton = ui:createButton("")
     -- purchaseButton:SetParent(bg)
     purchaseButton.Position = bg.Position + Number3(bg.Width-purchaseButton.Width-margin,
     bg.Height / 2 - purchaseButton.Height / 2,0)
+    if purchasedOrNot then
+        buttonName = "Own"
+        purchaseButton:setText(buttonName)
+    else
+        buttonName = "Buy"
+        purchaseButton:setText(buttonName)
+        --- test if we have purchased this item or not. 
+        purchaseButton.onRelease = function()
+            local store = KeyValueStore(playerName)
+            store:Get("items", function(success, results) 
+                if success then
+                    local aux = results
+                    -- search inside this table the element to change. 
+                    for k,v in pairs(aux) do 
+                        for n,r in pairs(v) do 
+                            if n == text then -- assuming text its equal to element list
+                                aux[n] = true -- lo marcamos como comprado. 
+                                -- seteamos items to aux. 
+                                store:Set("items", aux, function(success) 
+                                    if success then 
+                                        -- actualizar el boton aqui de "Buy" a "Own"
+                                        purchaseButton:setText("Own")
+                                    end
+                                end)
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end
 end
 
-inventory_ui.init = function(items)
+inventory_ui.init = function(items, playerName)
     -- Create the frame and have the set the properties (bg)
     if items then 
         print("Intiating the inventory_ui")
@@ -151,7 +174,7 @@ inventory_ui.init = function(items)
         for n,r in pairs(v) do
             itemCount = i * 75
             ---Number3(inventory_ui.bg.Width / 2 + 10, inventory_ui.bg.Height / 2 + 10, 0)
-            inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position + Number3(25, 30 + itemCount, 0), r) --6*65 = 390, 75 - 65 = 10 * 5 = 50 = 60px restantes.
+            inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position + Number3(25, 30 + itemCount, 0), r, playerName) --6*65 = 390, 75 - 65 = 10 * 5 = 50 = 60px restantes.
             i = i + 1
         end
     end
@@ -208,7 +231,7 @@ cubzhMod.initOrGetPlayer = function(u)
             else 
                 print("count is not equal to 0, so the player has items")
                 printItems(results)
-                inventory_ui.init(results)
+                inventory_ui.init(results, u)
             end
         end
     end)
