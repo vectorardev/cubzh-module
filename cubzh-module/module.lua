@@ -134,7 +134,6 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
                                 store:Set("items", {}, function(success) 
                                     if success then 
                                         -- actualizar el boton aqui de "Buy" a "Own"
-                                        purchaseButton.Text = "Own" 
                                     end
                                 end)
                                 -- seteamos items to aux. 
@@ -176,16 +175,15 @@ inventory_ui.init = function(items, playerName)
             amountOfElements = amountOfElements + 1
         end
     end
-    local itemCount = 0
-    local i = 0
-    for k,v in pairs(items) do
-        for n,r in pairs(v) do
-            itemCount = i * 75
-            ---Number3(inventory_ui.bg.Width / 2 + 10, inventory_ui.bg.Height / 2 + 10, 0)
-            inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position + Number3(25, 30 + itemCount, 0), r, playerName) --6*65 = 390, 75 - 65 = 10 * 5 = 50 = 60px restantes.
-            i = i + 1
-        end
-    end
+    -- local itemCount = 0
+    -- local i = 0
+    -- for k,v in pairs(items) do
+    --     for n,r in pairs(v) do
+    --         itemCount = i * 75
+    --         inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position + Number3(25, 30 + itemCount, 0), r, playerName) --6*65 = 390, 75 - 65 = 10 * 5 = 50 = 60px restantes.
+    --         i = i + 1
+    --     end
+    -- end
 end
 
 inventory_ui.toggleHide = function() 
