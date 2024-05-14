@@ -130,12 +130,16 @@ inventory_ui.purchaseItem = function(playerName, key)
     local store = KeyValueStore(playerName)
     store:Get("items", function(success, results) 
         if success and results then
-            local items = results or {}
+            local items = nil
             for k,v in pairs(results) do 
-                print("Dime los valores,", k,v)
-                for n,s in pairs(v) do 
-                    print("valores de dentro,", n,s)
+                print("Tabla,", k,v)
+                if k == "items" then
+                    items = v or {}
+                    break
                 end
+            end
+            for l,d in pairs(items) do 
+                print("Dime los valores,", l,d)
             end
             if items[key] ~= nil then 
                 items[key] = true 
