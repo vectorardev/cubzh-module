@@ -136,8 +136,10 @@ inventory_ui.purchaseItem = function(playerName, key)
                 store:Set("items", items, function(success) 
                     if success then
                         print(key .. " ha sido marcado como comprado.")
+                        purchaseButton.Text = "Own"
                     else
                         print(key .. " ha sido marcado como comprado.")
+                        purchaseButton.Text = "Error"
                     end
                 end)
             else
