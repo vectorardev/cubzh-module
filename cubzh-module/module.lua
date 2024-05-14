@@ -121,36 +121,30 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
         purchaseButton.Text = buttonName 
         --- test if we have purchased this item or not. 
         purchaseButton.onRelease = function()
-            local store = KeyValueStore(playerName)
-            store:Get("items", function(success, results) 
-                if success then
-                    local aux = results
-                    -- search inside this table the element to change. 
-                    for k,v in pairs(aux) do 
-                        for n,r in pairs(v) do 
-                            if n == text then -- assuming text its equal to element list
-                                aux[n] = true -- lo marcamos como comprado. 
-                                store:Set("items", {}, function(success) 
-                                    if success then 
-                                        -- actualizar el boton aqui de "Buy" a "Own"
-                                    end
-                                end)
-                                -- seteamos items to aux. 
-                                store:Set("items", aux, function(success) 
-                                    if success then 
-                                        -- actualizar el boton aqui de "Buy" a "Own"
-                                        purchaseButton.Text = "Own" 
-                                    end
-                                end)
-                                -- exit to avoid problems
-                                break
-                            end
-                        end
-                    end
-                end
-            end)
+            inventory_ui.purchaseItem(playerName, text)
         end
     end
+end
+
+inventory_ui.purchaseItem = function(playerName, key) 
+    local store = KeyValueStore(playerName)
+    store:Get("items", function(success, results) 
+        if success and results then
+            local items = results or {}
+            if items[key] ~= nil then 
+                items[key] = true 
+                store:Set("items", items, function(success) 
+                    if success then
+                        print(key .. " ha sido marcado como comprado.")
+                    else
+                        print(key .. " ha sido marcado como comprado.")
+                    end
+                end)
+            else
+                print("El item con nombre ", key, "no existe dentro de la tabla")
+            end
+        end
+    end)
 end
 
 inventory_ui.init = function(items, playerName)
