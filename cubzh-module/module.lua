@@ -77,7 +77,7 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     local margin = 10
     local ui = require("uikit")
     bg = ui:createFrame(color)
-    bg.Width = 200
+    bg.Width = 250
     bg.Height = 65
     bg.Position = position
     -- Create the image inside the frame to display the item 
