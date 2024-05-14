@@ -82,6 +82,7 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
     bg.Position = position
     -- Create the image inside the frame to display the item 
     local image = ui:createFrame(Color.White)
+    image:setParent(bg)
     image.Width = 50
     image.Height = 50
     local marginImage = (bg.Height - image.Height) / 2
@@ -102,6 +103,7 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
     -- Make a http or get the image from the repo (sendRequestForImage)
     -- Set the text of the item
     local itemName = ui:createText(text)
+    itemName:setParent(bg)
     -- itemName:SetParent(bg)
     -- itemName:SetColor(Color.black)
     local textX = bg.Width / 2 - itemName.Width / 2
@@ -110,6 +112,7 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
     -- create the button to purchase the item
     local buttonName = ""
     local purchaseButton = ui:createButton("")
+    purchaseButton:setParent(bg)
     -- purchaseButton:SetParent(bg)
     purchaseButton.Position = bg.Position + Number3(bg.Width - 60, bg.Height / 2 - purchaseButton.Height / 2, 0)
     if purchasedOrNot then
