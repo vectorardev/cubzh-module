@@ -81,7 +81,7 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     bg.Height = 65
     bg.Position = position
     -- Create the image inside the frame to display the item 
-    image = ui:createFrame(Color.White)
+    local image = ui:createFrame(Color.White)
     image.Width = 50
     image.Height = 50
     local marginImage = (bg.Height - image.Height) / 2
