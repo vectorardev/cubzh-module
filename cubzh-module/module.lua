@@ -120,11 +120,13 @@ inventory_ui.init = function(items)
     -- display items received and put them as a child of the frame
     -- items is a table with {key: string, value: bool}
     local itemCount = 0
+    local i = 0
     for k,v in pairs(items) do
         for n,r in pairs(v) do
-            itemCount = itemCount + 75
+            itemCount = i + 75
             ---Number3(inventory_ui.bg.Width / 2 + 10, inventory_ui.bg.Height / 2 + 10, 0)
             inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position + Number3(50, itemCount, 0), r)
+            i++
         end
     end
 end
