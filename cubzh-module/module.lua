@@ -86,6 +86,22 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     image.Height = 50
     local marginImage = (bg.Height - image.Height) / 2
     image.Position = bg.Position + Number3(marginImage, marginImage, 0)
+    -- load imageurl on the frame (URL HTTP)
+    local urlImages = "https://raw.githubusercontent.com/vectorardev/cubzh-module/master/cubzh-module/inventory-images/"
+    local fileType = ".png" 
+    local fileName = text -- we are assuming that text variable its the same as the file name in the repo
+    local finalUrl = urlImages .. fileName .. fileType
+    HTTP:Get(finalUrl, function(res)
+        if res.StatusCode == 200 then
+            print("The URL IS GOOD")
+            -- show the content of the image. 
+            print(res.Body)
+            -- conver the table to a quad ? 
+            image:setImage(res.Body)
+        else
+            print("CAN'T FIND THE URL")
+        end
+    end)
     -- image:SetParent(bg) [object:SetParent] argument 1 should have Object component
     -- Make a http or get the image from the repo (sendRequestForImage)
     -- Set the text of the item
