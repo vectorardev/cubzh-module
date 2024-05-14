@@ -93,7 +93,6 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
     local finalUrl = urlImages .. fileName .. fileType
     HTTP:Get(finalUrl, function(res)
         if res.StatusCode == 200 then
-            print(res.Body)
             image:setImage(res.Body)
         else
             print("CAN'T FIND THE URL")
