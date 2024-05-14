@@ -199,6 +199,9 @@ inventory_ui.toggleHide = function()
         inventory_ui.state = not inventory_ui.state
         local bgColor = inventory_ui.bg.Color 
         print(inventory_ui.bg.children)
+        for k,v in pairs(inventory_ui.bg.children) do 
+            print(k, v)
+        end
         -- for child in pairs(inventory_ui.bg.children) do
         --     print(child)
         --     if child.Color then 
