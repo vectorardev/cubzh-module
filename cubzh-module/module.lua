@@ -74,6 +74,7 @@ inventory_ui.state = false
 
 inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     -- Create the frame for the item
+    local margin = 10
     local ui = require("uikit")
     bg = ui:createFrame(color)
     bg.Width = 200
@@ -83,14 +84,14 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     image = ui:createFrame(Color.White)
     image.Width = 65
     image.Height = 65
-    image.Position = bg.Position + Number3(5, 0, 0)
+    image.Position = bg.Position + Number3(image.Width/2+margin, 0, 0)
     -- image:SetParent(bg) [object:SetParent] argument 1 should have Object component
     -- Make a http or get the image from the repo (sendRequestForImage)
     -- Set the text of the item
     itemName = ui:createText(text)
     -- itemName:SetParent(bg)
     -- itemName:SetColor(Color.black)
-    itemName.Position = bg.Position + Number3(15, 0, 0)
+    itemName.Position = bg.Position + Number3(bg.Width/2, 0, 0)
     -- create the button to purchase the item
     local buttonName = ""
     if purchasedOrNot then
@@ -100,7 +101,7 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     end
     purchaseButton = ui:createButton(buttonName)
     -- purchaseButton:SetParent(bg)
-    purchaseButton.Position = bg.Position + Number3(100,0,0)
+    purchaseButton.Position = bg.Position + Number3(bg.Width-purchaseButton.Width/2-margin,0,0)
 end
 
 inventory_ui.init = function(items)
