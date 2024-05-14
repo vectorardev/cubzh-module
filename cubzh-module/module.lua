@@ -238,7 +238,12 @@ cubzhMod.initOrGetPlayer = function(u)
                 print("count is not equal to 0, so the player has items")
                 printItems(results)
             end
-            inventory_ui.init(results, u)
+            store:Get("items", function(success, updated_results) 
+                if success then
+                    inventory_ui.init(updated_results, u)
+                end
+            end)
+
         end
     end)
 end
