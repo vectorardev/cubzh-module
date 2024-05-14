@@ -121,12 +121,12 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
         purchaseButton.Text = buttonName 
         --- test if we have purchased this item or not. 
         purchaseButton.onRelease = function()
-            inventory_ui.purchaseItem(playerName, text)
+            inventory_ui.purchaseItem(playerName, text, purchaseButton)
         end
     end
 end
 
-inventory_ui.purchaseItem = function(playerName, key) 
+inventory_ui.purchaseItem = function(playerName, key, btn) 
     local store = KeyValueStore(playerName)
     store:Get("items", function(success, results) 
         if success and results then
@@ -146,10 +146,10 @@ inventory_ui.purchaseItem = function(playerName, key)
                 store:Set("items", items, function(success) 
                     if success then
                         print(key .. " ha sido marcado como comprado.")
-                        purchaseButton.Text = "Own"
+                        btn.Text = "Own"
                     else
                         print(key .. " ha sido marcado como comprado.")
-                        purchaseButton.Text = "Error"
+                        btn.Text = "Error"
                     end
                 end)
             else
