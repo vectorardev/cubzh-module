@@ -111,7 +111,7 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot, pl
     local buttonName = ""
     local purchaseButton = ui:createButton("")
     -- purchaseButton:SetParent(bg)
-    purchaseButton.Position = bg.Position + Number3(bg.Width - purchaseButton.Width * 2 - margin, bg.Height / 2 - purchaseButton.Height / 2, 0)
+    purchaseButton.Position = bg.Position + Number3(bg.Width - 100, bg.Height / 2 - purchaseButton.Height / 2, 0)
     if purchasedOrNot then
         buttonName = "Own"
         purchaseButton.Text = buttonName
