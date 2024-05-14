@@ -82,8 +82,8 @@ inventory_ui.item = function(color, imageUrl, text, position, purchasedOrNot)
     bg.Position = position
     -- Create the image inside the frame to display the item 
     image = ui:createFrame(Color.White)
-    image.Width = 65
-    image.Height = 65
+    image.Width = 50
+    image.Height = 50
     image.Position = bg.Position + Number3(image.Width/2+margin, 0, 0)
     -- image:SetParent(bg) [object:SetParent] argument 1 should have Object component
     -- Make a http or get the image from the repo (sendRequestForImage)
@@ -122,7 +122,7 @@ inventory_ui.init = function(items)
     local itemCount = 0
     for k,v in pairs(items) do
         for n,r in pairs(v) do
-            itemCount = itemCount + 50
+            itemCount = itemCount + 100
             ---Number3(inventory_ui.bg.Width / 2 + 10, inventory_ui.bg.Height / 2 + 10, 0)
             inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position + Number3(50, itemCount, 0), r)
         end
