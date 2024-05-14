@@ -135,7 +135,7 @@ inventory_ui.init = function(items)
         for n,r in pairs(v) do
             itemCount = i * 75
             ---Number3(inventory_ui.bg.Width / 2 + 10, inventory_ui.bg.Height / 2 + 10, 0)
-            inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position + Number3(50, 30 + itemCount, 0), r) --6*65 = 390, 75 - 65 = 10 * 5 = 50 = 60px restantes.
+            inventory_ui.item(Color.Green, "nil", n, inventory_ui.bg.Position + Number3(25, 30 + itemCount, 0), r) --6*65 = 390, 75 - 65 = 10 * 5 = 50 = 60px restantes.
             i = i + 1
         end
     end
